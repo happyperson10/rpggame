@@ -1,0 +1,7 @@
+class Livingthing:
+    def __init__(self,healthpoints,damage):
+        self.healthpoints = healthpoints
+        self.damage = damage
+class Human(Livingthing):
+    def __init__(self,healthpoints,damage):
+        Livingthing.__init__(self,healthpoints,damage)
