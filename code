@@ -1,7 +1,12 @@
 class Livingthing:
-    def __init__(self,healthpoints,damage):
-        self.healthpoints = healthpoints
+    def __init__(self,hitpoints,damage):
+        self.hitpoints = hitpoints
         self.damage = damage
 class Human(Livingthing):
-    def __init__(self,healthpoints,damage):
-        Livingthing.__init__(self,healthpoints,damage)
+    def __init__(self,hitpoints,damage):
+        super().__init__(hitpoints,damage)
+class Monster(Livingthing):
+    def __init__(self,hitpoints,damage):
+        super().__init__(hitpoints,damage)
+Alex = Human(100,20)
+thomas = Human(200,10)
