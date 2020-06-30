@@ -55,6 +55,7 @@ def battlemode():
         elif GenericMonster.hitpoints <= 0:
             break
 # Now for the enemy
+# this doesn't seem to work
         if battlemode1 == 'heal' or 'quickattack':
             enemy = random.choices([20,60,0])
             if enemy == 20:
@@ -80,4 +81,5 @@ elif input('choose: what happened? /.: ') == '.':
     print('thomas:i see your the quite type anyway seems like you were unconsious and lost memory')
 
 print(Playername,'ok i understand i only remember my name which is',Playername,'\nthomas: anyway\
- you have to go to school to learn about\n "walking to school"\n')
+ can go to to the stadium to fight monsters\n')
+
