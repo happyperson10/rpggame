@@ -1,14 +1,14 @@
 import random
 # This is to be shared with every character in the game
 class Livingthing:
-    def __init__(self, first,hitpoints,longattack):
+    def __init__(self, first, hitpoints, quickattack):
         self.first = first
         self.hitpoints = hitpoints
-        self.longattack = longattack
+        self.quickattack = quickattack
 
 class Human(Livingthing):
-    def __init__(self, first, hitpoints,longattack,quickattack,heal):
-        super().__init__(first, hitpoints,longattack)
+    def __init__(self, first, hitpoints,quickattack,heal):
+        super().__init__(first, hitpoints,quickattack)
         self.quickattack = quickattack
         self.heal = heal
 
@@ -28,42 +28,56 @@ while True:
     if gender == 'male' or 'female':
         break
 # Instances of the class here
-Human1 = Human(Playername,100,40,20,10)
-Human2 = Human('thomas',200,20,10,5)
+Human1 = Human(Playername,100,20,10)
+Human2 = Human('thomas',200,10,5)
 GenericMonster = Monster('monster', 50, 20,random.randint(0,40))
 
-print('hello my name is thomas\nHAVE YOU SEEN THAT MONSTER')
+print('?:hello my name is ...\nIS THAT A MONSTER')
+print('you are in the battle mode as',Playername)
 def battlemode():
     while True:
-        """Trying to create the entire battle system of the game in one function"""
 
-        print(f'you are in the battle mode as {Playername}')
+        """Trying to create the entire battle system of the game in one function"""
         battlemode1 = input('choose quickattack or heal or see stats:')
         if battlemode1 == 'quickattack':
             print( 'you chose quickattack')
             GenericMonster.hitpoints -= Human1.quickattack
             print(f' the monster has been damaged by {GenericMonster.hitpoints}')
-
-        elif GenericMonster.hitpoints == 0:
-            break
-            return
-        elif GenericMonster.hitpoints >= 0:
-            break
         elif battlemode1 == 'heal':
             Human1.hitpoints += Human1.heal
             print(f'{Playername} has been healed by {Human1.heal}')
 
         elif battlemode1 == 'stats':
-            statsinput =input(f'if you want to see your stats say me else say you:')
-            if statsinput == 'me':
-                print(f'{Playername} hitpoints are {Human1.hitpoints}\
- his quickattack is {Human1.quickattack} and his longattack is {Human1.longattack}\
- his heal is {Human1.heal}')
-            elif statsinput == 'you':
-                pass
-# I need help in this i don't know how can it break when the hp gets 0
-        elif GenericMonster.hitpoints == 0:
+                print(f'{Playername} hitpoints are {Human1.hitpoints}his quickattack is \
+{Human1.quickattack} and his is his heal is {Human1.heal}')
+        if GenericMonster.hitpoints == 0:
             break
         elif GenericMonster.hitpoints <= 0:
             break
+# Now for the enemy
+        if battlemode1 == 'heal' or 'quickattack':
+            enemy = random.choices([20,60,0])
+            if enemy == 20:
+                Human1.hitpoints -= 20
+                print('your hitpoints now are',Human1.hitpoints)
+            elif enemy == 60:
+                Human1.hitpoints -= 60
+                print('you have been hit by quickattack',Human1.hitpoints)
+            elif enemy == 0:
+                print('you have been hit by magic but failed')
+
+        if Human1.hitpoints== 0:
+            print('you died')
+            continue
+        elif Human1.hitpoints <= 0:
+            print('you died')
+            continue
 battlemode()
+print('?:That was so cool my name is thomas welcome to the city')
+if input('choose: what happened? /.: ') == 'what happened?':
+    print('thomas:seems like you were unconsious and lost memory')
+elif input('choose: what happened? /.: ') == '.':
+    print('thomas:i see your the quite type anyway seems like you were unconsious and lost memory')
+
+print(Playername,'ok i understand i only remember my name which is',Playername,'\nthomas: anyway\
+ you have to go to school to learn about\n "walking to school"\n')
