@@ -1,4 +1,5 @@
 import random
+import time
 # This is to be shared with every character in the game
 class Livingthing:
     def __init__(self, first, hitpoints, quickattack):
@@ -81,8 +82,12 @@ def battlemode(player_combatant,enemy_combatant):
             else:
                 input(f'You hit the monster! It has {enemy_combatant.hitpoints} HP left!')
         elif battlemode1 == 'heal' or "h" in battlemode1.lower():
-            player_combatant.hitpoints += player_combatant.heal
-            input(f'{player.name} has been healed by {player.heal}')
+            if player_combatant.hitpoints + player_combatant.heal <= 100:
+                player_combatant.hitpoints += player_combatant.heal
+                input(f'{player.first} has been healed by {player.heal}')
+            else:
+                player_combatant.hitpoints = 100
+                input(f"{player.first} is complete healed!")
         elif battlemode1 == 'stats' or "s" in battlemode1.lower():
                 input(f'\n          {player.first}\n\nHealth Points : {player.hitpoints}\nQuick Attack : {player.quickattack} \nHeal : {player.heal}\n')
         
@@ -92,15 +97,21 @@ def battlemode(player_combatant,enemy_combatant):
             enemy = random.choice(attacks)
             if enemy == 20:
                 player.hitpoints -= 20
+                if player.hitpoints <=0:
+                    print('You died!')
+                    return "Death"
                 input(f'The monster hit you back with a light attack! You have {player.hitpoints} left!\n')
             elif enemy == 60:
                 player.hitpoints -= 60
+                if player.hitpoints <=0:
+                    print('You died!')
+                    return "Death"
                 input(f'The monster hit you back with a Heavy attack! You have {player.hitpoints} left!\n')
             elif enemy == 0:
-                input('The monster missed the attack! You remain untouched')
-        if player.hitpoints <= 0:
-            print('You died!')
-            return "Death"
+                if player.hitpoints <=0:
+                    print('You died!')
+                    return "Death"
+                input('The monster missed the attack! You remain untouched')            
 
 if __name__ == "__main__":
     while True:
